@@ -11,3 +11,4 @@ The easiest method is through an extension/add-on on chrome/firefox:
 
 Then add the script using the following link: https://github.com/cooljingle/memrise-learning-retries/raw/master/Memrise_Learning_Retries.user.js
 
+You can leave feedback or issues on the memrise forum https://community.memrise.com/t/userscript-memrise-learning-retries/
