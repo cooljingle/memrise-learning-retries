@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name           Memrise Learning Retries
 // @namespace      https://github.com/cooljingle
-// @description    Keep incorrectly answered words part of the planting session
+// @description    Keep incorrectly answered words part of the learning session
 // @match          https://www.memrise.com/course/*/garden/learn*
-// @version        0.0.1
+// @version        0.0.2
 // @updateURL      https://github.com/cooljingle/memrise-learning-retries/raw/master/Memrise_Learning_Retries.user.js
 // @downloadURL    https://github.com/cooljingle/memrise-learning-retries/raw/master/Memrise_Learning_Retries.user.js
 // @grant          none
@@ -18,7 +18,8 @@ $(document).ready(function() {
                 var currentBox, boxesList;
                 var setBoxes = function() {
                     b._list = boxesList; //overwrite new box arrangement
-                    b._list.splice(b.num + 1, 0, currentBox); //add retest
+                    b._list.splice(Math.min(b.num + 4, b._list.length - 1), 0, currentBox); //add retest
+                    b.reorder_future_to_avoid_repeats((x, y) => b.same_thinguser(x, y) && b.same_thinguser(currentBox, x));
                     b.add_next({ template: "copytyping", thing_id: currentBox.thing_id, column_a: currentBox.column_a, column_b: currentBox.column_b, wrote: b.current().given_answer }); //add word reminder
                 };
                 b.activate_box = (function() {
