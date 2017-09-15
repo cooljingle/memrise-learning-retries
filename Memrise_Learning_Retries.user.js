@@ -3,7 +3,7 @@
 // @namespace      https://github.com/cooljingle
 // @description    Keep incorrectly answered words part of the learning session
 // @match          https://www.memrise.com/course/*/garden/learn*
-// @version        0.0.6
+// @version        0.0.7
 // @updateURL      https://github.com/cooljingle/memrise-learning-retries/raw/master/Memrise_Learning_Retries.user.js
 // @downloadURL    https://github.com/cooljingle/memrise-learning-retries/raw/master/Memrise_Learning_Retries.user.js
 // @grant          none
@@ -28,7 +28,6 @@ $(document).ready(function() {
                             _.findIndex(b._list, function(box, i){ return (i > b.num && box.learnable_id === wrongBox.learnable_id && box.learn_session_level) || i === b._list.length; }) - b.num //next reoccurence cap
                         );
                         b._list.splice(Math.min(b.num + 1 + numPlacesAhead, b._list.length - 1), 0, currentBox); //add retest
-                        b.reorder_future_to_avoid_repeats((x, y) => b.same_thinguser(x, y) && b.same_thinguser(currentBox, x));
                     }
                     b.add_next({ template: wrongBox.template, learnable_id: currentBox.learnable_id, isFakeInsert: true }); //add extra fake word test
                     s.addPresentationOnMistake(wrongBox); //add word reminder
